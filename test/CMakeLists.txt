@@ -1,4 +1,4 @@
-
+add_subdirectory(libs)
 add_executable(test_sims main.cpp test.cpp)
 
 target_link_libraries(test_sims PUBLIC sims Catch2)
