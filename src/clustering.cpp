@@ -53,7 +53,7 @@ std::vector<sims::Optics::Neighbour> &sims::Optics::compute_neighbours(Node &p) 
     return this->neighbourhoods[p];
 }
 
-void sims::Optics::update_seeds(Node &p, std::vector<uint32_t> &seeds) {
+void sims::Optics::update_seeds(Node &p, std::vector<unsigned long> &seeds) {
     auto &p_neighbours = this->compute_neighbours(p);
     auto coredist = this->core_distance(p);
 
@@ -106,7 +106,7 @@ std::vector<sims::Node> sims::Optics::compute_ordering(std::vector<sims::Node> &
             continue;
         }
 
-        std::vector<uint32_t> seeds{};
+        std::vector<unsigned long> seeds{};
         update_seeds(p, seeds);
 
         while (!seeds.empty()) {
@@ -160,7 +160,7 @@ std::vector<sims::Optics::Cluster> sims::Optics::cluster(std::vector<Node> &orde
 
     separators.emplace_back(ordering.size());
 
-    uint32_t id = 0;
+    unsigned long id = 0;
     for (int j = 0; j < (separators.size() - 1); ++j) {
         auto start = separators[j];
         auto end = separators[j + 1];
@@ -177,7 +177,8 @@ std::vector<sims::Optics::Cluster> sims::Optics::cluster(std::vector<Node> &orde
 }
 
 
-void sims::Optics::clusterize_remaining(const std::vector<sims::Node> &nodes, std::vector<sims::Optics::Cluster> &clusters) {
+void
+sims::Optics::clusterize_remaining(const std::vector<sims::Node> &nodes, std::vector<sims::Optics::Cluster> &clusters) {
     auto cnodes = nodes;
     unsigned long node_count = 0;
     for (auto &cluster : clusters) {
@@ -190,7 +191,7 @@ void sims::Optics::clusterize_remaining(const std::vector<sims::Node> &nodes, st
         }
     }
     node_count = nodes.size() - node_count + clusters.size();
-    auto id = static_cast<uint32_t>(clusters.size());
+    auto id = static_cast<unsigned long>(clusters.size());
     for (auto &node : cnodes) {
         id++;
         std::vector<Node> single_node_cluster{node};
@@ -261,7 +262,7 @@ double sims::Optics::Cluster::cost() const {
     return cost;
 }
 
-uint32_t sims::Optics::Cluster::get_id() const {
+unsigned long sims::Optics::Cluster::get_id() const {
     return this->id;
 }
 
@@ -277,7 +278,7 @@ bool sims::Optics::Cluster::operator!=(const sims::Optics::Cluster &rhs) const {
     return !(rhs == *this);
 }
 
-uint64_t sims::Optics::CLink::get_id() const {
+unsigned long long sims::Optics::CLink::get_id() const {
     return this->id;
 }
 
@@ -289,8 +290,9 @@ const std::pair<sims::Optics::Cluster, sims::Optics::Cluster> &sims::Optics::CLi
     return clusters;
 }
 
-sims::Optics::CLink::CLink(uint64_t id, sims::Optics::Cluster &c1, sims::Optics::Cluster &c2) : id(id), clusters(
-        std::make_pair(c1, c2)) {
+sims::Optics::CLink::CLink(unsigned long long id, sims::Optics::Cluster &c1, sims::Optics::Cluster &c2) :
+        id(id),
+        clusters(std::make_pair(c1, c2)) {
     this->distance = distance_between(c1.centroid(), c2.centroid());
 }
 

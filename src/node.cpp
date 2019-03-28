@@ -2,11 +2,11 @@
 #include <utility>
 #include <sims/node.h>
 
-sims::Node::Node(uint32_t id, geo::Location location) : current_location(location) {
+sims::Node::Node(unsigned long id, geo::Location location) : current_location(location) {
     this->id = id;
 }
 
-uint32_t sims::Node::get_id() const {
+unsigned long sims::Node::get_id() const {
     return this->id;
 }
 

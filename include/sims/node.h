@@ -13,9 +13,9 @@ namespace sims {
     public:
         Node() = default;
 
-        Node(uint32_t id, geo::Location location);
+        Node(unsigned long id, geo::Location location);
 
-        uint32_t get_id() const;
+        unsigned long get_id() const;
 
         const geo::Location &get_location() const;
 
@@ -48,7 +48,7 @@ namespace sims {
 
         void set_processed(bool processed);
 
-        uint32_t id{};
+        unsigned long id{};
         std::vector<geo::Location> location_history;
         geo::Location current_location;
 
@@ -64,7 +64,7 @@ namespace std {
     template<>
     struct hash<sims::Node> {
         std::size_t operator()(const sims::Node &k) const {
-            return std::hash<uint32_t>{}(k.get_id());
+            return std::hash<unsigned long>{}(k.get_id());
         }
     };
 }

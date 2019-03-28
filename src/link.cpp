@@ -3,7 +3,7 @@
 
 #include <geo/geo.h>
 
-sims::Link::Link(uint64_t id, Node &node1, Node &node2) : nodes(std::make_pair(node1, node2)) {
+sims::Link::Link(unsigned long long id, Node &node1, Node &node2) : nodes(std::make_pair(node1, node2)) {
     this->id = id;
     this->distance = geo::distance_between(node1.get_location(), node2.get_location());
 }
@@ -25,7 +25,7 @@ bool sims::Link::operator!=(const Link &rhs) const {
     return !(rhs == *this);
 }
 
-uint64_t sims::Link::get_id() const {
+unsigned long long sims::Link::get_id() const {
     return id;
 }
 

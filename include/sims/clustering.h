@@ -18,14 +18,14 @@ namespace sims {
     class Optics {
     private:
         struct Neighbour {
-            uint32_t node{};
+            unsigned long node{};
             double distance{};
         };
 
     public:
         class Cluster {
         public:
-            Cluster(uint32_t id, ::std::vector<Node> &nodes) : id(id), nodes(nodes) {}
+            Cluster(unsigned long id, ::std::vector<Node> &nodes) : id(id), nodes(nodes) {}
 
             geo::Location centroid() const;
 
@@ -33,7 +33,7 @@ namespace sims {
 
             double radius() const;
 
-            uint32_t get_id() const;
+            unsigned long get_id() const;
 
             double cost() const;
 
@@ -46,7 +46,7 @@ namespace sims {
             bool operator!=(const Cluster &rhs) const;
 
         private:
-            uint32_t id{};
+            unsigned long id{};
             ::std::vector<Node> nodes{};
 
             mutable bool cached = false;
@@ -55,13 +55,13 @@ namespace sims {
 
         class CLink {
         public:
-            CLink(uint64_t id, Cluster &c1, Cluster &c2);
+            CLink(unsigned long long id, Cluster &c1, Cluster &c2);
 
             const ::std::pair<Cluster, Cluster> &get_clusters() const;
 
             double get_distance() const;
 
-            uint64_t get_id() const;
+            unsigned long long get_id() const;
 
             bool operator==(const CLink &rhs) const;
 
@@ -91,7 +91,7 @@ namespace sims {
             double distance;
             double rssi;
             double pep;
-            uint64_t id;
+            unsigned long long id;
             ::std::pair<Cluster, Cluster> clusters;
 
         };
@@ -115,12 +115,12 @@ private:
 
         ::std::vector<Neighbour> &compute_neighbours(Node &p);
 
-        void update_seeds(Node &p, ::std::vector<uint32_t> &seeds);
+        void update_seeds(Node &p, ::std::vector<unsigned long> &seeds);
 
-        double eps;
-        int minpts;
+        double eps{};
+        int minpts{};
 
-        ::std::unordered_map<uint32_t, Node> graph{};
+        ::std::unordered_map<unsigned long, Node> graph{};
         ::std::vector<int> unprocessed{};
         ::std::vector<Node> ordered{};
         ::std::unordered_map<Node, ::std::vector<Neighbour>> neighbourhoods{};

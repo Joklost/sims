@@ -12,13 +12,13 @@ namespace sims {
     class Link {
     public:
         Link() = default;
-        Link(uint64_t id, sims::Node &node1, sims::Node &node2);
+        Link(unsigned long long id, sims::Node &node1, sims::Node &node2);
 
         const ::std::pair<sims::Node, sims::Node> &get_nodes() const;
 
         double get_distance() const;
 
-        uint64_t get_id() const;
+        unsigned long long get_id() const;
 
         bool operator==(const Link &rhs) const;
 
@@ -34,7 +34,7 @@ namespace sims {
 
         double distance{};
     private:
-        uint64_t id{};
+        unsigned long long id{};
         ::std::pair<sims::Node, sims::Node> nodes;
 
     };
