@@ -45,6 +45,13 @@ install(TARGETS sims EXPORT SimsLibraryConfig
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})  # This is for Windows
 install(DIRECTORY include DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
+# This makes the project importable from install directory.
+install(EXPORT SimsLibraryConfig DESTINATION cmake)
+
+# This makes the project importable from the build directory
+export(TARGETS sims FILE SimsLibraryConfig.cmake)
+
+
 target_link_libraries(sims eigen common geo)
 #add_subdirectory(benchmark)
 enable_testing()
