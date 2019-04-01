@@ -25,7 +25,7 @@ endif ()
 
 add_subdirectory(libs)
 
-add_library(sims
+add_library(sims OBJECT
         $<TARGET_OBJECTS:geo>
         $<TARGET_OBJECTS:common>
         src/math.cpp src/radiomodel.cpp src/linkmodel.cpp
