@@ -26,6 +26,8 @@ endif ()
 add_subdirectory(libs)
 
 add_library(sims
+        $<TARGET_OBJECTS:geo>
+        $<TARGET_OBJECTS:common>
         src/math.cpp src/radiomodel.cpp src/linkmodel.cpp
         src/cholesky.cpp src/clustering.cpp
         src/datagen.cpp src/node.cpp src/link.cpp src/linalg.cpp)
