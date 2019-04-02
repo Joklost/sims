@@ -53,9 +53,7 @@ install(EXPORT SimsLibraryConfig DESTINATION cmake)
 # This makes the project importable from the build directory
 export(TARGETS sims FILE SimsLibraryConfig.cmake)
 
-
 target_link_libraries(sims eigen common geo)
-#add_subdirectory(benchmark)
 enable_testing()
 
 add_subdirectory(test)
