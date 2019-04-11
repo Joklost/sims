@@ -9,15 +9,15 @@ sims::data::generate_nodes(unsigned long count, geo::Location &upper, geo::Locat
     std::vector<sims::Node> nodes{};
     nodes.reserve(count);
 
-    auto lat_min = lower.get_latitude();
-    auto lat_max = upper.get_latitude();
+    auto lat_min = lower.latitude;
+    auto lat_max = upper.latitude;
     std::random_device rd_lat;
     std::default_random_engine eng_lat(rd_lat());
     std::uniform_real_distribution<double> dist_lat{lat_min, lat_max};
     auto gen_lat = std::bind(dist_lat, eng_lat);
 
-    auto lon_min = lower.get_longitude();
-    auto lon_max = upper.get_longitude();
+    auto lon_min = lower.longitude;
+    auto lon_max = upper.longitude;
     std::random_device rd_lon;
     std::default_random_engine eng_lon(rd_lon());
     std::uniform_real_distribution<double> dist_lon{lon_min, lon_max};
@@ -50,10 +50,10 @@ sims::data::generate_cluster(geo::Location &center, uint32_t begin, unsigned lon
 
         auto w = r * std::sqrt(u);
         auto t = 2 * M_PI * v;
-        auto x = (w * std::cos(t)) / std::cos(center.get_longitude());
+        auto x = (w * std::cos(t)) / std::cos(center.longitude);
         auto y = w * std::sin(t);
 
-        sims::Node n{i, {center.get_latitude() + x, center.get_longitude() + y}};
+        sims::Node n{i, {center.latitude + x, center.longitude + y}};
         nodes.emplace_back(n);
     }
 

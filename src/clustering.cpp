@@ -214,8 +214,8 @@ geo::Location sims::Optics::Cluster::centroid() const {
     auto lat = 0.0;
     auto lon = 0.0;
     for (auto &node : this->nodes) {
-        lat += node.get_location().get_latitude();
-        lon += node.get_location().get_longitude();
+        lat += node.get_location().latitude;
+        lon += node.get_location().longitude;
     }
 
     lat = lat / this->nodes.size();

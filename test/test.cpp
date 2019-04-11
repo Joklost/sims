@@ -695,8 +695,8 @@ TEST_CASE("Generate Aloha line topology", "[aloha]") {
 
     /*std::cout << "#!/usr/bin/env bash\nmpirun -n 1 ctrlr/ctrlr $2 : \\" << std::endl;
     for (const auto &node : nodes) {
-        std::cout << "    -n 1 $1/$1 " << node.get_location().get_latitude() << " "
-                  << node.get_location().get_longitude() << " : \\" << std::endl;
+        std::cout << "    -n 1 $1/$1 " << node.get_location().latitude << " "
+                  << node.get_location().longitude << " : \\" << std::endl;
     }
     std::cout << "    -n 1 lmc/lmc $2" << std::endl;*/
 
@@ -706,9 +706,9 @@ TEST_CASE("Generate Aloha line topology", "[aloha]") {
                   << node.get_id()
                   << "\""
                   << ": {\"lat\": "
-                  << node.get_location().get_latitude()
+                  << node.get_location().latitude
                   << ",\"lon\": "
-                  << node.get_location().get_longitude()
+                  << node.get_location().longitude
                   << ",\"color\": \"rgb(220, 20, 60)\"},"
                   << std::endl;
     }
@@ -725,9 +725,9 @@ TEST_CASE("Generate Aloha ring topology", "[aloha]") {
                   << node.get_id()
                   << "\""
                   << ": {\"lat\": "
-                  << node.get_location().get_latitude()
+                  << node.get_location().latitude
                   << ",\"lon\": "
-                  << node.get_location().get_longitude()
+                  << node.get_location().longitude
                   << ",\"color\": \"rgb(220, 20, 60)\"},"
                   << std::endl;
     }
@@ -736,9 +736,9 @@ TEST_CASE("Generate Aloha ring topology", "[aloha]") {
     /*std::cout << "#!/usr/bin/env bash\nmpirun -n 1 ctrlr/ctrlr $2 : \\" << std::endl;
     for (const auto &node : nodes) {
         std::cout << "    -n 1 $1/$1 "
-                  << node.get_location().get_latitude()
+                  << node.get_location().latitude
                   << " "
-                  << node.get_location().get_longitude()
+                  << node.get_location().longitude
                   << " : \\" << std::endl;
     }
     std::cout << "    -n 1 lmc/lmc $2" << std::endl;*/
